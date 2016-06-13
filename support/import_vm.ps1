@@ -139,7 +139,7 @@ $script_block = {
   }
 
   $fqdn = $vm.ComputerNameString
-  if ( ! $fqdn.contains($domain_name) )
+  if ( $domain_name -and ! $fqdn.contains(".") -and  ! $fqdn.contains($domain_name) )
   {
     # Linux machines do not always set domain name propery for example
     $fqdn = "$fqdn.$domain_name"
