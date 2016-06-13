@@ -1,0 +1,14 @@
+language: ruby
+rvm:
+- 2.0.0
+bundler_args: --without doc guard --jobs 7
+script: bundle exec rake build
+deploy:
+  provider: rubygems
+  api_key:
+    secure: DAXK2K/QOcfUbt8quDshY0yc1nT0iAMY0i70aOuVX8wChoX4DVE7NKywpbauCqntNtOv28apyg4ih8fGHFOk+bEvQE84SLrLQRXM3urjcITpfFzvkig79VSs0zwb0AjxfQoL5kPHEf5JwRpMGBN9iADHbnJZm85Q8Sk/nauViHc=
+  gem: kitchen-vmm
+  on:
+    tags: true
+    repo: jarig/kitchen-vmm
+    all_branches: true
