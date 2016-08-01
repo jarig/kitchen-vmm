@@ -64,7 +64,7 @@ platforms:
 ### Configure Transport
 
 In case you need to create both Linux and Windows machines, then different transport types have to be used(ssh for linux and winrm for windows).
-For easier maintenance and cleaner configuration you can create global kitchen configuration under $HOME/[username]/.kitchen/config.yml with following contents:
+For easier maintenance and cleaner configuration you can create global kitchen configuration under $HOME/.kitchen/config.yml with following contents:
 
 ```yaml
 <% WINRM_USERNAME = 'winrm_user' %>
