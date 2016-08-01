@@ -64,7 +64,7 @@ platforms:
 ### Configure Transport
 
 In case you need to create both Linux and Windows machines, then different transport types have to be used(ssh for linux and winrm for windows).
-For easier maintenance and cleaner configuration you can create global kitchen configuration under $HOME/<username>/.kitchen/config.yml with following contents:
+For easier maintenance and cleaner configuration you can create global kitchen configuration under $HOME/[username]/.kitchen/config.yml with following contents:
 
 ```yaml
 <% WINRM_USERNAME = 'winrm_user' %>
@@ -79,7 +79,7 @@ transport:
   # example: winrm_transport
 ```
 
-Then in your kitchen.yml specify transport either for platform or suite
+Then in your cookbook specific kitchen.yml configure transport either for platform or suite
 ```yaml
 suites:
 - name: windows-basic
@@ -135,6 +135,17 @@ suites:
     ...
     vm_name: 'my-vm-in-vmm'
   ```
+
+* #### vm_name_prefix
+
+  Prefix for VM name, all created VMs are going to have name prepended with the specified prefix.
+
+  ```yaml
+  driver_config:
+    ...
+    vm_name_prefix: tst-
+  ```
+
 
 * #### vm_hardware_profile
 

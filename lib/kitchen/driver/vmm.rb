@@ -20,6 +20,7 @@ module Kitchen
       default_config :vm_host_group_name
       default_config :vmm_server_address
       default_config :vm_name, nil
+      default_config :vm_name_prefix, ''
       default_config :vm_hardware_profile, ''
       default_config :proxy_server_address, ''
       default_config :ad_server, ''
@@ -75,7 +76,7 @@ module Kitchen
             vmm_server_address: config[:vmm_server_address],
             proxy_server_address: config[:proxy_server_address],
             vm_hardware_profile: config[:vm_hardware_profile],
-            vm_name: config[:vm_name] || instance.name,
+            vm_name: "#{config[:vm_name_prefix]}#{config[:vm_name] || instance.name}",
             vm_template_name: config[:vm_template_name],
             vm_host_group_name: config[:vm_host_group_name],
             ad_server: config[:ad_server],
@@ -85,6 +86,9 @@ module Kitchen
 
         #
         info("Creating and registering VM in the VMM (#{options[:vmm_server_address]})...")
+        if options[:proxy_server_address]
+          info("Using proxy: #{options[:proxy_server_address]}")
+        end
         if options[:ad_server] && options[:ad_source_path] && options[:ad_target_path]
           info("  ..and moving it under #{options[:ad_target_path]} after it's created.")
         end
